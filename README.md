@@ -4,7 +4,7 @@
 - websocket.js 
 - eventsource.js
   
-Реализован web-интерфейс react для обмена сообщениями:
+Реализовано web приложение react для обмена сообщениями:
 - ChatPage
   - EventSourcing.tsx
   - WebSock.tsx
