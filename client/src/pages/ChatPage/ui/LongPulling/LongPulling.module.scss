@@ -1,0 +1,26 @@
+.form {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid;
+    border-radius: 6px;
+
+    padding: 24px;
+
+    gap: 12px;
+
+    height: 100%;
+}
+
+.button {
+    width: 150px;
+}
+
+.input {
+    width: 100%;
+}
+
+.button-wrapper {
+    display: grid;
+    justify-content: end;
+}

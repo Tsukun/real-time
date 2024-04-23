@@ -1,12 +1,8 @@
 import React from 'react'
-import LongPulling from './chats/LongPulling'
+import ChatPage from './pages/ChatPage/ChatPage'
 
 function App() {
-    return (
-        <div>
-            <LongPulling />
-        </div>
-    )
+    return <ChatPage />
 }
 
 export default App
