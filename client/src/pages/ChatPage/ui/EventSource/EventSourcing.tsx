@@ -4,7 +4,7 @@ import Input from 'components/Input/Input'
 import Button from 'components/Button/Button'
 import Message from 'components/Message/Message'
 
-import styles from './LongPulling.module.scss'
+import styles from './EventSource.module.scss'
 import axios from 'axios'
 
 interface Message {
@@ -12,7 +12,7 @@ interface Message {
     id: number
 }
 
-const LongPulling = () => {
+const EventSourcing = () => {
     const [text, setText] = useState('')
     const [messages, setMessages] = useState<Message[]>([])
 
@@ -32,23 +32,16 @@ const LongPulling = () => {
     }, [])
 
     const subscribe = async () => {
-        try {
-            const { data } = await axios.get<Message>(
-                'http://localhost:5000/get-messages'
-            )
-
-            setMessages((prev) => [...prev, data])
-            await subscribe()
-        } catch (e) {
-            setTimeout(() => {
-                subscribe()
-            }, 500)
+        const eventSource = new EventSource('http://localhost:5000/connect')
+        eventSource.onmessage = (event) => {
+            const message = JSON.parse(event.data)
+            setMessages((prev) => [...prev, message])
         }
     }
 
     return (
         <div className={styles.form}>
-            <h3>Long Pulling</h3>
+            <h3>Event Sourcing</h3>
             <Input
                 className={styles.input}
                 onChange={handleOnChange}
@@ -69,4 +62,4 @@ const LongPulling = () => {
     )
 }
 
-export default LongPulling
+export default EventSourcing
